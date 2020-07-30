@@ -1,0 +1,21 @@
+{
+  "name": "Semesta",
+  "short_name": "Sem",
+  "description": "Presensi",
+  "lang": "en-US",
+  "dir": "ltr",
+  "theme_color": "#414f57",
+  "start_url": "/",
+  "background_color": "#000000",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "icons": [{
+    "src": "/semestaplay.png",
+    "sizes": "72x72",
+    "type": "image/png"
+   },,{
+    "src": "/semestaplay.png",
+    "sizes": "720x720",
+    "type": "image/png"
+   }]
+ }
