@@ -275,15 +275,7 @@
         {
           popup.style.display = "none";
         }
-        // else{
-        //   popup.style.display = "none";
-        // }
       }
-
-      // function myReset() {
-      //   var popup = document.getElementById("myPopup");
-      //   popup.style.display = "none";
-      // }
       
       // Pop up konfirmasi setelah tombol input status ditekan
       jQuery(function()
@@ -329,6 +321,15 @@
         {
           autofocusField.focus();
         }
+      });
+      
+      $(document).ready(function(){
+        $("#batal").click(function(){
+          $("#myPopup").hide();
+        });
+        $("#males").click(function(){
+          $("#myPopup").show();
+        });
       });
 
         // function loading1() {
