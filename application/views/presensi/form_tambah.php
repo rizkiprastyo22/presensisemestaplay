@@ -26,6 +26,10 @@
     <link rel="stylesheet" type="text/css" href="/assets/loading-bar.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- bootstrap js -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
   <style>
@@ -213,34 +217,58 @@
       <p>ID : <input type="number" name="input_id" id="input_id" value="<?php echo set_value('input_id'); ?>" 
       autofocus="autofocus" placeholder="Silakan tap kartu Anda" maxlength="10"></p>
 
-      <!-- Pop up status -->
-      <div id="myPopup">
+      <!-- Menunjukkan jam sekarang -->
+      Jam Sekarang : <input id="waktu" type="text" value="<?php date_default_timezone_set('Asia/Jakarta');
+      echo date('H:i'); ?>" readonly="readonly">
+      
+      <!-- Popup -->
+      <div class="modal fade" id="modalForm" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            
+            <!-- Popup Header -->
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Tutup</span>
+              </button>
+              <h3 class="modal-title" id="labelModalKu">Status</h3>
+            </div>
+            
+            <!-- Popup Body -->
+            <div class="modal-body">
+              <p class="statusMsg"></p>
 
-        <!-- Membuat progress bar -->
-        <div id="myProgress">
-        <div id="myBar"></div>
-        </div><br></br>
+              <!-- Membuat progress bar -->
+              <div id="myProgress">
+              <div id="myBar"></div>
+              </div><br></br>
 
-          <!-- 4 pilihan status tipe "submit" semua, variabel input_status untuk form, ketika diklik menjalankan fungsi move()-->
-          <p>Status : <br></br>
+              <!-- 4 pilihan status tipe "submit" semua, variabel input_status untuk form, ketika diklik menjalankan fungsi move()-->
               <input id="masuk" type="submit" name="input_status" value="MASUK" onclick="move()"><br></br>
               <input id="istirahat" type="submit" name="input_status" value="ISTIRAHAT" onclick="move()"> <br></br>
               <input id="kembali" type="submit" name="input_status" value="KEMBALI" onclick="move()"><br></br>
               <input id="pulang" type="submit" name="input_status" value="PULANG" onclick="move()"><br></br><br>
+            </div>
 
-              <!-- Menunjukkan jam sekarang -->
-              Jam Sekarang : <input id="waktu" type="text" value="<?php date_default_timezone_set('Asia/Jakarta');
-              echo date('H:i'); ?>" readonly="readonly">
+                  <!-- Popup Footer -->
+                  <div class="modal-footer">
+                    <input type="reset" id="ulang" class="btn btn-default" data-dismiss="modal" value="BATAL">
+                  </div>
+              </div>
+          </div>
       </div>
-      
-      <!-- Tombol RESET -->
-      <input type="reset" style="text-align:center" id="batal" value="RESET">
+        
+        <!-- Tombol RESET -->
+        <input type="reset" id="batal" value="RESET">
+        
+      <!-- CLOSE FORM TAG -->
+      <?php echo form_close(); ?>
 
-    <!-- CLOSE FORM TAG -->
-    <?php echo form_close(); ?>
-
-    <!-- Button untuk show "status" -->
-    <button id="males" onclick="myFunction()">Status</button>
+    <!-- Tombol untuk memicu modal -->
+    <button id="males">
+          Status
+    </button>
         
     <!-- FUNGSI DALAM SCRIPT -->
     <script>
@@ -249,6 +277,13 @@
       {
         window.addEventListener('load', () => {navigator.serviceWorker.register('/sw.js');});
       }
+
+      // Membuka Popup
+      $(document).ready(function(){
+        $("#males").click(function(){
+          $("#modalForm").modal();
+        });
+      });
 
       // Ketika ENTER ditekan, maka masuk ke input status
       $('#hore').on('keyup keypress', function(e)
@@ -260,22 +295,6 @@
           document.getElementById("males").click();
         }
       });
-
-      // Ketika pengguna menekan "enter" pada ID, akan muncul pop up
-      function myFunction()
-      {
-        var popup = document.getElementById("myPopup");
-        //  var x = document.getElementById("input_id");
-        //  if (x.toString().length < 10 && x.toString().length > 10)
-        if (popup.style.display === "none")
-        {
-          popup.style.display = "block";
-        }
-        else
-        {
-          popup.style.display = "none";
-        }
-      }
       
       // Pop up konfirmasi setelah tombol input status ditekan
       jQuery(function()
@@ -310,7 +329,8 @@
       function pesan() {
       var x = document.getElementById("snackbar");
       x.className = "show";
-      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);}
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+      }
       
       // Fungsi RESET
       var form = document.querySelector('form');
@@ -322,28 +342,6 @@
           autofocusField.focus();
         }
       });
-      
-      $(document).ready(function(){
-        $("#batal").click(function(){
-          $("#myPopup").hide();
-        });
-        $("#males").click(function(){
-          $("#myPopup").show();
-        });
-      });
-
-        // function loading1() {
-        //   /* construct manually */
-        //   var bar1 = new ldBar("#myItem1");
-        //   /* ldBar stored in the element */
-        //   var bar2 = document.getElementById('myItem1').ldBar;
-        //   bar1.set(60);
-        // }
-        // function loading2() {
-        //   $( "#progressbar" ).progressbar({
-        //     value: 37
-        //   });
-        // } );
       
       // Fungsi progress bar
       function move()
