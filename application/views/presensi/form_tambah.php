@@ -30,175 +30,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- bootstrap js -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- CSS -->
+    <link href="<?php echo base_url('assets/css/form_tambah.css'); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
-
-  <style>
-    /* Hide pop up status */
-    #myPopup{
-      display: none;
-    }
-
-    /* Background pada loading bar */
-    #myProgress
-    {
-      visibility: show;
-      width: 100%;
-      background-color: #ddd;
-    }
-    
-    /* Isi loading bar yang bergerak */
-    #myBar
-    {
-      visibility: show;
-      width: 1%;
-      height: 30px;
-      background-color: #4CAF50;
-    }
-
-    /* Pop up setelah presensi */
-    #snackbar
-    {
-      visibility: hidden;
-      position: center;
-      text-align: center;
-      position: absolute;
-      /* min-width: 250px; */
-      /* margin-left: -125px; */
-      /* border-radius: 2px; */
-      /* padding: 16px; */
-      /* z-index: 1; */
-      left: 40%;
-      top: 35%;
-      font-size: 20px;
-      font-family: helvetica;
-      font-size : 20px;
-      color: #323232;
-      background-color: #f5fffa;
-    }
-
-    /* Efek pada snackbar ketika muncul dan menghilang */
-    #snackbar.show
-    {
-      visibility: visible;
-      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-
-    /* Judul Presensi Karyawan Semesta Play */
-    h1
-    {
-      text-align: center;
-      font-family: helvetica;
-      font-size: 50px;
-      color: #008080;
-    }
-
-    /* Warna background utama pada web */
-    body
-    {
-      background-color: #f5fffa;
-    }
-
-    /* Efek pada tulisan ID, Status, dan Jam Sekarang */
-    p
-    {
-      text-align: center;
-      font-family: helvetica;
-      font-size: 30px;
-      color: #323232;
-    }
-
-    /* Efek tulisan dalam kotak ID */
-    input
-    {
-      text-align: center;
-      align-content: center;
-      padding: 42px 42px;
-      margin: 8px 8px;
-      cursor: pointer;
-      font-family: helvetica;
-      font-size: 30px;
-      border: #b9d9eb;
-      border-style: solid;
-      border-width: 2px;
-      color: #323232;
-      background-color: #cdd4e4;
-    }
-
-    /* Efek ngilangin tombol status */
-    button
-    {
-      text-align: center;
-      align-content: center;
-      border: #f5fffa;
-      border-style: solid;
-      border-width: 2px;
-      color : #f5fffa;
-      background-color : #f5fffa;
-    }
-
-    /* Efek tombol RESET */
-    #batal
-    {
-      text-align: center;
-      align-content: center;
-      position: absolute;
-      display: block;
-      cursor: pointer;
-      top: 90%;
-      left: 43%;
-      margin: 8px 8px;
-      padding: 42px 42px;
-      font-family : helvetica;
-      font-size: 30px;
-      border: #ff004d;
-      border-style: solid;
-      border-width: 2px;
-      color : white;
-      background-color : #ff4040;
-    }
-
-    /* Efek tombol MASUK, ISTIRAHAT, KEMBALI, PULANG */
-    #masuk, #istirahat, #kembali, #pulang
-    {
-      text-align: center;
-      position: center;
-      align-content: center;
-      display: inline-block;
-      width: 50%;
-      padding: 50px 50px;
-      border: #00b5b8;
-      border-style: solid;
-      border-width: 2px;
-      color: white;
-      background-color: #99badd;
-    }
-
-    /* Efek tulisan dalam kotak Jam Sekarang */
-    #waktu
-    {
-      text-align: center;
-      align-content: center;
-      padding: 35px 35px;
-      margin: 2px 2px;
-      font-family : helvetica;
-      font-size: 30px;
-      cursor: pointer;
-      border: #b9d9eb;
-      border-style: solid;
-      border-width: 2px;
-      color : #323232;
-      background-color: #cdd4e4;
-    }
-
-    /* Setelah tombol RESET ditekan, langsung autofocus ke ID */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button
-    {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  </style>
 
   <body>
     <!-- Memunculkan pop up setelah presensi -->
@@ -206,6 +40,7 @@
 
     <!-- Judul utama -->
     <h1>Presensi Karyawan Semesta Play</h1>
+    <hr></hr>
 
     <!-- Menampilkan Error jika ID tidak diisi -->
     <div style="color: red;"><?php echo validation_errors(); ?></div>
@@ -214,11 +49,11 @@
     <?php echo form_open("presensi/tambah",array("id"=>"hore")); ?>
 
       <!-- Input ID -->
-      <p>ID : <input type="number" name="input_id" id="input_id" value="<?php echo set_value('input_id'); ?>" 
+      <p><br>ID : <input type="number" name="input_id" id="input_id" value="<?php echo set_value('input_id'); ?>" 
       autofocus="autofocus" placeholder="Silakan tap kartu Anda" maxlength="10"></p>
 
       <!-- Menunjukkan jam sekarang -->
-      Jam Sekarang : <input id="waktu" type="text" value="<?php date_default_timezone_set('Asia/Jakarta');
+      <p>Jam Sekarang : <input id="waktu" type="text" value="<?php date_default_timezone_set('Asia/Jakarta');
       echo date('H:i'); ?>" readonly="readonly">
       
       <!-- Popup -->
@@ -227,7 +62,7 @@
           <div class="modal-content">
             
             <!-- Popup Header -->
-            <div class="modal-header">
+            <div class="modal-header" id="header">
               <button type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">&times;</span>
                 <span class="sr-only">Tutup</span>
@@ -236,7 +71,7 @@
             </div>
             
             <!-- Popup Body -->
-            <div class="modal-body">
+            <div class="modal-body" id="popup">
               <p class="statusMsg"></p>
 
               <!-- Membuat progress bar -->
@@ -252,7 +87,7 @@
             </div>
 
                   <!-- Popup Footer -->
-                  <div class="modal-footer">
+                  <div class="modal-footer" id="footer">
                     <input type="reset" id="ulang" class="btn btn-default" data-dismiss="modal" value="BATAL">
                   </div>
               </div>
@@ -270,104 +105,8 @@
           Status
     </button>
         
-    <!-- FUNGSI DALAM SCRIPT -->
-    <script>
-      // Menjalankan Service Worker
-      if ('serviceWorker' in navigator)
-      {
-        window.addEventListener('load', () => {navigator.serviceWorker.register('/sw.js');});
-      }
-
-      // Membuka Popup
-      $(document).ready(function(){
-        $("#males").click(function(){
-          $("#modalForm").modal();
-        });
-      });
-
-      // Ketika ENTER ditekan, maka masuk ke input status
-      $('#hore').on('keyup keypress', function(e)
-      {
-        var keyCode = e.keyCode || e.which;
-        if (keyCode === 13)
-        { 
-          e.preventDefault();
-          document.getElementById("males").click();
-        }
-      });
-      
-      // Pop up konfirmasi setelah tombol input status ditekan
-      jQuery(function()
-      {
-        jQuery('input[id=masuk]').click(
-        function(){return confirm('Apakah Anda yakin MASUK?');});
-        pesan();
-      });
-        
-      jQuery(function()
-      {
-        jQuery('input[id=istirahat]').click(
-        function(){return confirm('Apakah Anda yakin ISTIRAHAT?');});
-        pesan();
-      });
-
-      jQuery(function()
-      {
-        jQuery('input[id=kembali]').click(
-        function(){return confirm('Apakah Anda yakin KEMBALI?');});
-        pesan();
-      });
-
-      jQuery(function()
-      {
-        jQuery('input[id=pulang]').click(
-        function(){return confirm('Apakah Anda yakin PULANG?');});
-        pesan();
-      });
-
-      // Fungsi pop up setelah submit
-      function pesan() {
-      var x = document.getElementById("snackbar");
-      x.className = "show";
-      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
-      }
-      
-      // Fungsi RESET
-      var form = document.querySelector('form');
-      form.addEventListener('reset', function(event)
-      {
-        var autofocusField = form.querySelector('[autofocus]');
-        if(autofocusField instanceof HTMLInputElement)
-        {
-          autofocusField.focus();
-        }
-      });
-      
-      // Fungsi progress bar
-      function move()
-      {
-        var i = 0;
-        if (i == 0)
-        {
-          i = 1;
-          var elem = document.getElementById("myBar");
-          var width = 1;
-          var id = setInterval(frame, 10);
-          function frame()
-          {
-            if (width >= 100)
-            {
-              clearInterval(id);
-              i = 0;
-            }
-            else
-            {
-              width++;
-              elem.style.width = width + "%";
-            }
-          }
-        }
-      }
-    </script>
+    <!-- JS -->
+    <script src="<?php echo base_url('assets/js/form_tambah.js'); ?>"></script>
+    
   </body>
 </html>
