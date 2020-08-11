@@ -15,6 +15,8 @@
 
     <title>Presensi Karyawan Semesta Play</title>
 
+    <script> var baseurl = "<?php echo base_url("index.php/"); ?>"; // Buat variabel baseurl untuk nanti di akses pada file config.js 
+    </script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.js"></script>
     <script type="text/javascript" src="/assets/loading-bar.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -49,8 +51,9 @@
     <?php echo form_open("presensi/tambah",array("id"=>"hore")); ?>
 
       <!-- Input ID -->
-      <p><br>ID : <input type="number" name="input_id" id="input_id" value="<?php echo set_value('input_id'); ?>" 
-      autofocus="autofocus" placeholder="Silakan tap kartu Anda" maxlength="10"></p>
+      <p><br>ID : <input type="number" name="id" id="id" value="<?php echo set_value('id'); ?>" 
+      autofocus="autofocus" placeholder="Tap Kartu Anda..." maxlength="10"></p>
+      <button type="button" id="btn-search">Cari</button>
 
       <!-- Menunjukkan jam sekarang -->
       <p>Jam Sekarang : <input id="waktu" type="text" value="<?php date_default_timezone_set('Asia/Jakarta');
@@ -79,11 +82,18 @@
               <div id="myBar"></div>
               </div><br></br>
 
+            <!-- Buat isi nama otomatis abis input id -->
+            <p>Nama : <input type="text" name="nama_lengkap" placeholder="ID TIDAK ADA" readonly><br></br>
+
               <!-- 4 pilihan status tipe "submit" semua, variabel input_status untuk form, ketika diklik menjalankan fungsi move()-->
               <input id="masuk" type="submit" name="input_status" value="MASUK" onclick="move()"><br></br>
+              <input type="text" name="input_masuk" value="<?php echo date('H:i'); ?>" readonly="readonly"><br></br>
               <input id="istirahat" type="submit" name="input_status" value="ISTIRAHAT" onclick="move()"> <br></br>
+              <input type="text" name="input_istirahat" value="<?php echo date('H:i'); ?>" readonly="readonly"><br></br>
               <input id="kembali" type="submit" name="input_status" value="KEMBALI" onclick="move()"><br></br>
+              <input type="text" name="input_kembali" value="<?php echo date('H:i'); ?>" readonly="readonly"><br></br>
               <input id="pulang" type="submit" name="input_status" value="PULANG" onclick="move()"><br></br><br>
+              <input type="text" name="input_pulang" value="<?php echo date('H:i'); ?>" readonly="readonly"><br></br>
             </div>
 
                   <!-- Popup Footer -->
@@ -107,6 +117,121 @@
         
     <!-- JS -->
     <script src="<?php echo base_url('assets/js/form_tambah.js'); ?>"></script>
+    <script type="text/javascript">
     
+    // Ambil pegawai
+      $(document).ready(function(){
+        $('#id').on('input',function(){
+                  
+                  var id=$(this).val();
+                  $.ajax({
+                      type : "POST",
+                      url  : "<?php echo base_url('presensi/get_pegawai')?>",
+                      dataType : "JSON",
+                      data : {id: id},
+                      cache:false,
+                      success: function(data){
+                          $.each(data,function(id, nama_lengkap){
+                              $('[name="nama_lengkap"]').val(data.nama_lengkap);
+                          });
+                          
+                      }
+                  });
+                  return false;
+            });
+      });
+
+      // Ambil presensi
+      $(document).ready(function(){
+        $('#id').on('input',function(){
+                  
+                  var id=$(this).val();
+                  $.ajax({
+                      type : "POST",
+                      url  : "<?php echo base_url('presensi/get_masuk')?>",
+                      dataType : "JSON",
+                      data : {id: id},
+                      cache:false,
+                      success: function(data){
+                          $.each(data,function(id, status, waktu){
+                              $('[name="status"]').val(data.status);
+                              $('[name="input_masuk"]').val(data.waktu);
+                          });
+                          
+                      }
+                  });
+                  return false;
+            });
+      });
+
+      // Ambil presensi
+      $(document).ready(function(){
+        $('#id').on('input',function(){
+                  
+                  var id=$(this).val();
+                  $.ajax({
+                      type : "POST",
+                      url  : "<?php echo base_url('presensi/get_istirahat')?>",
+                      dataType : "JSON",
+                      data : {id: id},
+                      cache:false,
+                      success: function(data){
+                          $.each(data,function(id, status, waktu){
+                              $('[name="status"]').val(data.status);
+                              $('[name="input_istirahat"]').val(data.waktu);
+                          });
+                          
+                      }
+                  });
+                  return false;
+            });
+      });
+
+      // Ambil presensi
+      $(document).ready(function(){
+        $('#id').on('input',function(){
+                  
+                  var id=$(this).val();
+                  $.ajax({
+                      type : "POST",
+                      url  : "<?php echo base_url('presensi/get_kembali')?>",
+                      dataType : "JSON",
+                      data : {id: id},
+                      cache:false,
+                      success: function(data){
+                          $.each(data,function(id, status, waktu){
+                              $('[name="status"]').val(data.status);
+                              $('[name="input_kembali"]').val(data.waktu);
+                          });
+                          
+                      }
+                  });
+                  return false;
+            });
+      });
+
+      // Ambil presensi
+      $(document).ready(function(){
+        $('#id').on('input',function(){
+                  
+                  var id=$(this).val();
+                  $.ajax({
+                      type : "POST",
+                      url  : "<?php echo base_url('presensi/get_pulang')?>",
+                      dataType : "JSON",
+                      data : {id: id},
+                      cache:false,
+                      success: function(data){
+                          $.each(data,function(id, status, waktu){
+                              $('[name="status"]').val(data.status);
+                              $('[name="input_pulang"]').val(data.waktu);
+                          });
+                          
+                      }
+                  });
+                  return false;
+            });
+      });
+    </script>
   </body>
 </html>
