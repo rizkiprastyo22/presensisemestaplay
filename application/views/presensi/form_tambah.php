@@ -87,13 +87,13 @@
 
               <!-- 4 pilihan status tipe "submit" semua, variabel input_status untuk form, ketika diklik menjalankan fungsi move()-->
               <input id="masuk" type="submit" name="input_status" value="MASUK" onclick="move()"><br></br>
-              <input type="text" name="input_masuk" value="<?php echo date('H:i'); ?>" readonly="readonly"><br></br>
+              <input type="text" name="input_masuk" readonly="readonly" placeholder="Belum Presensi"><br></br>
               <input id="istirahat" type="submit" name="input_status" value="ISTIRAHAT" onclick="move()"> <br></br>
-              <input type="text" name="input_istirahat" value="<?php echo date('H:i'); ?>" readonly="readonly"><br></br>
+              <input type="text" name="input_istirahat" readonly="readonly" placeholder="Belum Presensi"><br></br>
               <input id="kembali" type="submit" name="input_status" value="KEMBALI" onclick="move()"><br></br>
-              <input type="text" name="input_kembali" value="<?php echo date('H:i'); ?>" readonly="readonly"><br></br>
+              <input type="text" name="input_kembali" readonly="readonly" placeholder="Belum Presensi"><br></br>
               <input id="pulang" type="submit" name="input_status" value="PULANG" onclick="move()"><br></br><br>
-              <input type="text" name="input_pulang" value="<?php echo date('H:i'); ?>" readonly="readonly"><br></br>
+              <input type="text" name="input_pulang" readonly="readonly" placeholder="Belum Presensi"><br></br>
             </div>
 
                   <!-- Popup Footer -->
