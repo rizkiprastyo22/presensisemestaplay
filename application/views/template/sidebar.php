@@ -13,7 +13,7 @@
     </li>
 
     <li>
-      <a class="waves-effect" href="<?php echo base_url('dashboard'); ?>"><i class="material-icons">home</i>Dashboard</a>
+      <a class="waves-effect" href="<?php echo base_url('dashboard'); ?>"><i class="material-icons">home</i>Daftar Presensi</a>
     </li>
     
     <li>

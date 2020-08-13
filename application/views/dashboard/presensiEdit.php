@@ -25,6 +25,10 @@
               <label for="id" class="">ID</label>
           </div>
           <div class="input-field col s12 m6">
+              <input id="username" disabled name="nama_lengkap" type="text" value="<?php echo $presensi->nama_lengkap; ?>">
+              <label for="nama_lengkap" class="">Nama Lengkap</label>
+          </div>
+          <div class="input-field col s12 m6">
               <select id="level" name="status">
                   <option value="masuk">Masuk</option>
                   <option value="istirahat">Istirahat</option>
@@ -34,7 +38,7 @@
               <label>Pilih Status</label>
           </div>
           <div class="input-field col s12 m6">
-              <input id="tanggal_mulai" class="datepicker" name="waktu" type="datetime-local" value="<?php echo set_value('waktu'); ?>">
+              <input id="tanggal_mulai" disabled class="datepicker" name="waktu" type="text" value="<?php echo $presensi->waktu; ?>">
               <label for="waktu" class="">Waktu</label>
           </div>
           <div class="input-field col s12 right-align">

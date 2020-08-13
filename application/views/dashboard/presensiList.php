@@ -31,8 +31,8 @@
                       <td><?php echo $row->status; ?></td>
                       <td><?php echo $row->waktu; ?></td>
                       <td class="center-align">
-                        <a href="<?php echo base_url('presensi/edit/' . $row->id); ?>" class="btn-floating halfway-fab waves-effect waves-light tooltipped" data-position="top" data-tooltip="Edit Data"><i class="material-icons">edit</i></a>
-                        <a href="<?php echo base_url('presensi/delete/' . $row->id); ?>" class="btn-floating halfway-fab waves-effect waves-light tooltipped" data-position="top" data-tooltip="Delete Data"><i class="material-icons">delete</i></a>
+                        <a href="<?php echo base_url('dashboard/edit/' . $row->nomor); ?>" class="btn-floating halfway-fab waves-effect waves-light tooltipped" data-position="top" data-tooltip="Edit Data"><i class="material-icons">edit</i></a>
+                        <a href="<?php echo base_url('dashboard/delete/' . $row->nomor); ?>" class="btn-floating halfway-fab waves-effect waves-light tooltipped" data-position="top" data-tooltip="Delete Data"><i class="material-icons">delete</i></a>
                       </td>
                     </tr>
                   <?php endforeach; ?>

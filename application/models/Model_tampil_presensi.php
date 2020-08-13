@@ -50,22 +50,22 @@
       return $query;
     }
 
-    public function update($id, $data)
+    public function update($nomor, $data)
     {
       // Jalankan query
       $query = $this->db
-        ->where('id', $id)
+        ->where('nomor', $nomor)
         ->update($this->table, $data);
       
       // Return hasil query
       return $query;
     }
 
-    public function delete($id)
+    public function delete($nomor)
     {
       // Jalankan query
       $query = $this->db
-        ->where('id', $id)
+        ->where('nomor', $nomor)
         ->delete($this->table);
       
       // Return hasil query

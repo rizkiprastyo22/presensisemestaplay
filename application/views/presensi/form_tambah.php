@@ -116,6 +116,13 @@
     </button>
         
     <!-- JS -->
+    <script>
+    // Menjalankan Service Worker
+    if ('serviceWorker' in navigator)
+    {
+      window.addEventListener('load', () => {navigator.serviceWorker.register('/sw.js');});
+    }
+    </script>
     <script src="<?php echo base_url('assets/js/form_tambah.js'); ?>"></script>
     <script type="text/javascript">
     

@@ -79,7 +79,7 @@ class Dashboard extends MY_Controller {
     $this->load->view('template/layout', $data);
   }
 
-  public function edit($id = null)
+  public function edit($nomor = null)
   {
     // Jika form di submit jalankan blok kode ini
     if ($this->input->post('submit')) {
@@ -98,11 +98,11 @@ class Dashboard extends MY_Controller {
       if ($this->form_validation->run() === TRUE) {
 
         $data = array(
-            'nama_lengkap' => $this->input->post('nama_lengkap')
+            'status' => $this->input->post('status')
         );
 
         // Jalankan function insert pada model_tampil_presensi
-        $query = $this->model_tampil_presensi->update($id, $data);
+        $query = $this->model_tampil_presensi->update($nomor, $data);
 
         // cek jika query berhasil
         if ($query) $message = array('status' => true, 'message' => 'Berhasil memperbarui presensi');
@@ -112,12 +112,12 @@ class Dashboard extends MY_Controller {
         $this->session->set_flashdata('message', $message);
 
         // refresh page
-        redirect('dashboard/edit/'.$id, 'refresh');
+        redirect('dashboard/edit/'.$nomor, 'refresh');
 			} 
     }
     
     // Ambil data user dari database
-    $presensi = $this->model_tampil_presensi->get_where(array('id' => $id))->row();
+    $presensi = $this->model_tampil_presensi->get_where(array('nomor' => $nomor))->row();
 
     // Jika data user tidak ada maka show 404
     if (!$presensi) show_404();
@@ -131,16 +131,16 @@ class Dashboard extends MY_Controller {
     $this->load->view('template/layout', $data);
   }
 
-  public function delete($id)
+  public function delete($nomor)
   {
     // Ambil data user dari database
-    $presensi = $this->model_tampil_presensi->get_where(array('id' => $id))->row();
+    $presensi = $this->model_tampil_presensi->get_where(array('nomor' => $nomor))->row();
 
     // Jika data user tidak ada maka show 404
     if (!$presensi) show_404();
 
     // Jalankan function delete pada model_tampil_presensi
-    $query = $this->model_tampil_presensi->delete($id);
+    $query = $this->model_tampil_presensi->delete($nomor);
 
     // cek jika query berhasil
     if ($query) $message = array('status' => true, 'message' => 'Berhasil menghapus presensi');
