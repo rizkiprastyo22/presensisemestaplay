@@ -13,7 +13,7 @@
     </li>
 
     <li>
-      <a class="waves-effect" href="<?php echo base_url('dashboard'); ?>"><i class="material-icons">home</i>Daftar Presensi</a>
+      <a class="waves-effect" href="<?php echo base_url('daftar'); ?>"><i class="material-icons">assignment_ind</i>Daftar Presensi</a>
     </li>
     
     <li>
@@ -23,6 +23,10 @@
     <?php if($this->session->userdata('level') === 'administrator'): ?>
       <li>
         <a class="subheader">Admin</a>
+      </li>
+
+      <li>
+      <a class="waves-effect" href="<?php echo base_url('dashboard'); ?>"><i class="material-icons">assignment_ind</i>Edit Presensi</a>
       </li>
       
       <li>

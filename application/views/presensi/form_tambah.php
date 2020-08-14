@@ -1,6 +1,6 @@
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=0.4">
+    <meta name="viewport" content="width=device-width, initial-scale=0.4 maximum-scale=0.4">
     <meta name="Description" content="Presensi" />
     <!-- Mendeklarasikan warna yang muncul pada address bar Chrome versi seluler -->
     <meta name="theme-color" content="#414f57" />

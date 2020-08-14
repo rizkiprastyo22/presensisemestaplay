@@ -60,7 +60,7 @@ class Auth extends CI_Controller
 
       // Jalankan validasi jika semuanya benar maka redirect ke controller dashboard
       if ($this->form_validation->run() === TRUE) {
-        redirect('dashboard');
+        redirect('daftar');
       } 
     }
     
